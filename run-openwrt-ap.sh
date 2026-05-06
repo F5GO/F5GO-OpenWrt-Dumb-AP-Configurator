@@ -61,6 +61,16 @@ download_script_if_missing() {
   echo "Скрипт успешно скачан: $LOCAL_SCRIPT"
 }
 
+upload_via_scp() {
+  # Для OpenWrt без sftp-server нужен legacy SCP протокол (-O).
+  if scp -O -P "$SSH_PORT" "$LOCAL_SCRIPT" "$TARGET"; then
+    return 0
+  fi
+
+  echo "WARN: scp -O не сработал, пробую обычный scp..." >&2
+  scp -P "$SSH_PORT" "$LOCAL_SCRIPT" "$TARGET"
+}
+
 need_cmd ssh
 need_cmd scp
 
@@ -76,7 +86,7 @@ SSH_PORT="$(ask_with_default "SSH port" "22")"
 TARGET="${SSH_USER}@${ROUTER_IP}:${REMOTE_SCRIPT}"
 
 echo "Загрузка: $LOCAL_SCRIPT -> $TARGET"
-scp -P "$SSH_PORT" "$LOCAL_SCRIPT" "$TARGET"
+upload_via_scp
 echo "Загрузка завершена."
 
 echo "Запуск скрипта на роутере..."

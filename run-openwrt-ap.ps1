@@ -73,6 +73,20 @@ function Ensure-LocalScript([string]$Path, [string]$Url) {
     }
 }
 
+function Upload-Script([string]$LocalPath, [string]$Target, [int]$SshPort) {
+    # Для OpenWrt без sftp-server сначала используем legacy SCP протокол (-O).
+    & scp -O -P $SshPort "$LocalPath" "$Target"
+    if ($LASTEXITCODE -eq 0) {
+        return
+    }
+
+    Write-Host "WARN: scp -O не сработал, пробую обычный scp..."
+    & scp -P $SshPort "$LocalPath" "$Target"
+    if ($LASTEXITCODE -ne 0) {
+        throw "SCP завершился с ошибкой: $LASTEXITCODE"
+    }
+}
+
 Ensure-OpenSshClient
 
 if ([string]::IsNullOrWhiteSpace($RouterIp)) {
@@ -87,10 +101,7 @@ Ensure-LocalScript -Path $localScript -Url $ScriptUrl
 
 $target = "$User@$RouterIp" + ":" + "$RemotePath"
 Write-Host "Загрузка: $localScript -> $target"
-& scp -P $Port "$localScript" "$target"
-if ($LASTEXITCODE -ne 0) {
-    throw "SCP завершился с ошибкой: $LASTEXITCODE"
-}
+Upload-Script -LocalPath $localScript -Target $target -SshPort $Port
 Write-Host "Загрузка завершена."
 
 if ($CopyOnly) {
