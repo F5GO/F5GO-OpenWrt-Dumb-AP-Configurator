@@ -4,7 +4,7 @@
 ![Shell](https://img.shields.io/badge/Language-Shell-green?style=for-the-badge&logo=gnu-bash)
 ![Platform](https://img.shields.io/badge/Launcher-macOS%20%7C%20Windows-orange?style=for-the-badge)
 
-Короткий набор скриптов для перевода OpenWrt в режим **Dumb AP** и быстрого запуска с macOS/Windows.
+Короткий набор скриптов для перевода OpenWrt в режим **Dumb AP**  (мост + отключение DHCP + настройка Wi-Fi) и быстрого запуска с macOS/Windows.
 
 ---
 
