@@ -66,20 +66,24 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/F5GO/F5GO-OpenWrt-Dumb-AP-C
 - `run-openwrt-ap.sh`
 - `run-openwrt-ap.ps1`
 
-macOS/Linux:
+После скачивания и распаковки перейди в каталог с файлами `run-openwrt-ap.sh` и `f5go-openwrt-dumb-ap.sh`.
+
+macOS/Linux (пример для папки Downloads):
 
 ```bash
-cd F5GO-OpenWrt-Dumb-AP-Configurator
+cd ~/Downloads/F5GO-OpenWrt-Dumb-AP-Configurator
 chmod +x run-openwrt-ap.sh
 ./run-openwrt-ap.sh
 ```
 
-Windows PowerShell:
+Windows PowerShell (пример для папки Downloads):
 
 ```powershell
-cd .\F5GO-OpenWrt-Dumb-AP-Configurator
+cd "$HOME\Downloads\F5GO-OpenWrt-Dumb-AP-Configurator"
 .\run-openwrt-ap.ps1
 ```
+
+Если после распаковки имя папки отличается, замени только последний сегмент пути на фактический.
 
 > [!IMPORTANT]
 > Windows launcher проверяет `ssh/scp`. Если OpenSSH Client отсутствует, скрипт пытается установить его автоматически. Для авто-установки нужен PowerShell с правами администратора.
