@@ -71,7 +71,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/F5GO/F5GO-OpenWrt-Dumb-AP-C
 macOS/Linux (пример для папки Downloads):
 
 ```bash
-cd ~/Downloads/F5GO-OpenWrt-Dumb-AP-Configurator
+cd ~/Downloads/F5GO-OpenWrt-Dumb-AP-Configurator-main
 chmod +x run-openwrt-ap.sh
 ./run-openwrt-ap.sh
 ```
@@ -79,7 +79,7 @@ chmod +x run-openwrt-ap.sh
 Windows PowerShell (пример для папки Downloads):
 
 ```powershell
-cd "$HOME\Downloads\F5GO-OpenWrt-Dumb-AP-Configurator"
+cd "$HOME\Downloads\F5GO-OpenWrt-Dumb-AP-Configurator-main"
 .\run-openwrt-ap.ps1
 ```
 
